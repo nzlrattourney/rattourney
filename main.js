@@ -1,11 +1,16 @@
-registerBtn = document.getElementById("register");
+const registerBtn = document.getElementById("register");
 registerBtn.addEventListener("click", () => {
     window.open("https://discord.com/invite/39KDYNcccD")
 })
 
-rickrollBtn = document.getElementById("rickroll");
+const rickrollBtn = document.getElementById("rickroll");
 rickrollBtn.addEventListener("click", () => {
-    window.open("https://www.youtube.com/watch?v=xvFZjo5PgG0&list=RDxvFZjo5PgG0&start_radio=1")
+    window.open("https://discord.com/invite/39KDYNcccD")
+})
+
+const twitchBtn = document.getElementById("twitch");
+twitchBtn.addEventListener("click", () =>{
+    window.open("https://www.twitch.tv/nzlmonster")
 })
 
 

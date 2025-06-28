@@ -427,3 +427,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
+.twitch:hover{
+  cursor: pointer;
+  transform: scale(1.15);
+}
