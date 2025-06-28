@@ -5,7 +5,7 @@ registerBtn.addEventListener("click", () => {
 
 const rickrollBtn = document.getElementById("rickroll");
 rickrollBtn.addEventListener("click", () => {
-    window.open("https://discord.com/invite/39KDYNcccD")
+    window.open("https://linktr.ee/nzlmonster")
 })
 
 const twitchBtn = document.getElementById("twitch");
