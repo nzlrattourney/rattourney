@@ -106,7 +106,7 @@ body {
   background: radial-gradient(circle at top, #1E1E1E, #121212);
     background: 
     linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)),
-    url('/test.jpg') no-repeat center center;
+    url('https://raw.githubusercontent.com/nzlrattourney/rattourney/main/test.jpg') no-repeat center center;
       background-size: cover;
   width: 100vw;
   height: 100vh;
