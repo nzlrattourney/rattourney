@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rat Tournament</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="nav-bar">
+        <div class="title">
+            <div class="crown">👑</div>
+            <h1>Rat Tournament</h1>
+        </div>
+        <ul>
+            <li id="learn-more-btn">Learn More</li>
+            <li id="schedule-btn">Schedule</li>
+            <li id="prev-champs-btn">Previous Tournament Champions</li>
+            <li id="rickroll">Contact</li>
+        </ul>
+    </div>
+
+    <div class="watch-now">
+        <blockquote>
+            "Help me! Help me!"
+            <footer>Waks, our first season MVP</footer>
+        </blockquote>
+        <p>Do you have what it takes to become the next champion?</p>
+        <button id="register">Register Now</button>
+    </div>
+
+    <div id="overlay" class="overlay hidden">
+        <div class="tournament-learn-more " id="learn-more">
+            <div class="about">
+                <p class="about-text">
+                    Hey Summoners! NZL Monster is putting together a fun and friendly 5v5 League of Legends tournament,
+                    and
+                    you’re invited.
+                    Whether you're a seasoned ranked grinder or just play for laughs with your friends, this event is
+                    all
+                    about bringing people together and having a good time.<br><br><br>
+                </p>
+            </div>
+            <div class="rules">
+                <p class="tourney-rules">NZL RAT TOURNEY RULES <br></p>
+                <ul class="rules">
+                    <li>These are friendly tourney style games that are BO5 - All ranks are welcome to join</li><br>
+                    <li>Games will be on Saturday & Sunday and start at 5pm AEST, 6pm AEDT, 8pm NZST</li><br>
+                    <li>All participants of the tourney should join the Discord Server, so that they can see any
+                        announcements and updates</li><br>
+                    <li>It is expected that for tourney games that all members of the teams playing will be in VC -
+                        Using Team 1 and Team 2 voice channels</li><br>
+                    <li>Main accounts only, if anyone is needing to use an alt for any reason, then DM Monster with at
+                        least 1hr notice of the alt account details and why</li><br>
+                    <li>Keep comms clean and friendly, no trolling, flaming, or bad mouthing your own team or others -
+                        Anyone found to be displaying bad sportsmanship will be removed from tourney, and depending on
+                        severity Discord/Twitch</li><br>
+                    <li>Players will be locked into their respective teams with one sub per team - However, if needing
+                        to sub out for any reason, then DM Monster and he will allocate someone as replacement - NO
+                        EXTERNAL SUBS ALLOWED</li><br>
+                    <li>Teams will be picked and evened out based off role and rank (just to ensure a team has a mix of
+                        main roles), however players are not locked into roles and can swap at any point in time</li>
+                    <br>
+                    <li>If anyone has preferences on teams or prior commitments on either days on the weekend, then DM
+                        Monster and let him know</li><br>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="champsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeChampsModal">&times;</span>
+            <div class="prev-champs">
+                <h2>👑Champions👑</h2>
+                <table id="champions-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="scheduleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeScheduleModal">&times;</span>
+            <div class="match-schedule">
+                <table id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Team 1</th>
+                            <th>Team 2</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-table-body"></tbody>
+                </table>
+                <button id="loadScheduleBtn" class="cyberpunk-btn">
+                    <span class="btn-icon">⟳</span>
+                    <span class="btn-text">Load Schedule</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
