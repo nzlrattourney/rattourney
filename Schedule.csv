@@ -1,17 +1,17 @@
-stage: Round Robin, date: 28-06-2025, time:8 PM, team1: Team 8, team2: Team 9, results: Team 9
-stage: Round Robin, date: 28-06-2025, time:10 PM, team1: Team 5, team2: Team 10, results: Team 10
-stage: Round Robin, date: 29-06-2025, time:8 PM, team1: Team 3, team2: Team 6, results: Team 3
-stage: Round Robin, date: 29-06-2025, time:10 PM, team1: Team 1, team2: Team 4, results: Team 1
-stage: Round Robin, date: 05-07-2025, time:8 PM, team1: Team 2, team2: Team 8, results: Team 2
-stage: Round Robin, date: 05-07-2025, time:10 PM, team1: Team 3, team2: Team 7, results: Team 3
-stage: Round Robin, date: 06-07-2025, time:8 PM, team1: Team 4, team2: Team 10, results: Team 4
-stage: Round Robin, date: 06-07-2025, time:10 PM, team1: Team 1, team2: Team 6, results: Team 6
-stage: Round Robin, date: 12-07-2025, time:8 PM, team1: Team 2, team2: Team 7, results: TBD
-stage: Round Robin, date: 12-07-2025, time:10 PM, team1: Team 5, team2: Team 9, results: TBD
-stage: Quarter Finals, date: 13-07-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD
-stage: Quarter Finals, date: 19-07-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD
-stage: Quarter Finals, date: 20-07-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD 
-stage: Quarter Finals, date: 26-07-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD
-stage: Semi Finals, date: 27-07-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD
-stage: Semi Finals, date: 02-08-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD 
-stage: Finals, date: 03-08-2025, time:8 PM, team1: TBD, team2: TBD, results: TBD
+stage: Round Robin, date: 28-06-2025, time:8 PM, team1: Team 8, team2: Team 9, status, results: Team 9
+stage: Round Robin, date: 28-06-2025, time:10 PM, team1: Team 5, team2: Team 10, status, results: Team 10
+stage: Round Robin, date: 29-06-2025, time:8 PM, team1: Team 3, team2: Team 6, status, results: Team 3
+stage: Round Robin, date: 29-06-2025, time:10 PM, team1: Team 1, team2: Team 4, status, results: Team 1
+stage: Round Robin, date: 05-07-2025, time:8 PM, team1: Team 2, team2: Team 8, status, results: Team 2
+stage: Round Robin, date: 05-07-2025, time:10 PM, team1: Team 3, team2: Team 7, status, results: Team 3
+stage: Round Robin, date: 06-07-2025, time:8 PM, team1: Team 4, team2: Team 10, status, results: Team 4
+stage: Round Robin, date: 06-07-2025, time:10 PM, team1: Team 1, team2: Team 6, status, results: Team 6
+stage: Round Robin, date: 12-07-2025, time:8 PM, team1: Team 2, team2: Team 7, status, results: TBD
+stage: Round Robin, date: 12-07-2025, time:10 PM, team1: Team 5, team2: Team 9, status, results: TBD
+stage: Quarter Finals, date: 13-07-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD
+stage: Quarter Finals, date: 19-07-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD
+stage: Quarter Finals, date: 20-07-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD 
+stage: Quarter Finals, date: 26-07-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD
+stage: Semi Finals, date: 27-07-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD
+stage: Semi Finals, date: 02-08-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD 
+stage: Finals, date: 03-08-2025, time:8 PM, team1: TBD, team2: TBD, status, results: TBD
