@@ -177,16 +177,20 @@ function loadSchedule() {
         if (nowNZ >= matchDate && nowNZ <= matchEnd) status = "Live";
         else if (nowNZ > matchEnd) status = "Finished";
         
+        const status = match.status || 'TBD';  // Fallback to 'TBD' if status is missing
+        const results = match.results || '-';  // Fallback to '-' if results is missing
+
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td>${match.date}</td>
-          <td>${match.time} NZST</td>
-          <td>${match.team1}</td>
-          <td>${match.team2}</td>
-          <td class="status-${status.toLowerCase()}">${status}</td>
-          <td>${match.results}</td>
+        <td>${match.date || 'N/A'}</td>
+        <td>${match.time ? `${match.time} NZST` : 'TBD'}</td>
+        <td>${match.team1 || 'TBD'}</td>
+        <td>${match.team2 || 'TBD'}</td>
+        <td class="status-${status.toLowerCase()}">${status}</td>
+        <td>${results}</td>
         `;
         scheduleTable.appendChild(row);
+
       });
     })
     .catch(error => {
