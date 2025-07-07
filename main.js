@@ -177,8 +177,6 @@ function loadSchedule() {
         if (nowNZ >= matchDate && nowNZ <= matchEnd) status = "Live";
         else if (nowNZ > matchEnd) status = "Finished";
         
-        const results = match.results || '-';  // Fallback to '-' if results is missing
-
         const row = document.createElement("tr");
         row.innerHTML = `
           <td>${match.date}</td>
@@ -186,7 +184,7 @@ function loadSchedule() {
           <td>${match.team1}</td>
           <td>${match.team2}</td>
           <td class="status-${status.toLowerCase()}">${status}</td>
-          <td>${match.results}</td>
+          
         `;
         scheduleTable.appendChild(row);
 
