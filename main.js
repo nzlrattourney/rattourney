@@ -184,7 +184,8 @@ function loadSchedule() {
           <td>${match.team1}</td>
           <td>${match.team2}</td>
           <td class="status-${status.toLowerCase()}">${status}</td>
-          <td>${match.results}</td>
+          <td>${match.results}</td>c
+          <td>${match.stage}</td>
         `;
         scheduleTable.appendChild(row);
 
