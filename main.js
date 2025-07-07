@@ -179,6 +179,7 @@ function loadSchedule() {
         
         const row = document.createElement("tr");
         row.innerHTML = `
+          <td>${match.stage}</td>
           <td>${match.date}</td>
           <td>${match.time} NZST</td>
           <td>${match.team1}</td>
