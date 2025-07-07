@@ -184,8 +184,8 @@ function loadSchedule() {
           <td>${match.time} NZST</td>
           <td>${match.team1}</td>
           <td>${match.team2}</td>
-          <td class="status-${status.toLowerCase()}">${status}</td>
           <td>${match.results}</td>
+          <td class="status-${status.toLowerCase()}">${status}</td>
         `;
         scheduleTable.appendChild(row);
 
