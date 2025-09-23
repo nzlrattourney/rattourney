@@ -1,18 +1,11 @@
-date: 28-06-2025, time:8 PM, team1: Team 8, team2: Team 9, results: Team 9, stage: Round Robin
-date: 28-06-2025, time:10 PM, team1: Team 5, team2: Team 10, results: Team 10, stage: Round Robin
-date: 29-06-2025, time:8 PM, team1: Team 3, team2: Team 6, results: Team 3, stage: Round Robin
-date: 29-06-2025, time:10 PM, team1: Team 1, team2: Team 4, results: Team 1, stage: Round Robin
-date: 05-07-2025, time:8 PM, team1: Team 2, team2: Team 8, results: Team 2, stage: Round Robin
-date: 05-07-2025, time:10 PM, team1: Team 3, team2: Team 7, results: Team 3, stage: Round Robin
-date: 06-07-2025, time:8 PM, team1: Team 4, team2: Team 10, results: Team 4, stage: Round Robin
-date: 06-07-2025, time:10 PM, team1: Team 1, team2: Team 6, results: Team 6, stage: Round Robin
-date: 12-07-2025, time:8 PM, team1: Team 2, team2: Team 7, results: Team 2, stage: Round Robin
-date: 12-07-2025, time:10 PM, team1: Team 5, team2: Team 9, results: Team 5, stage: Round Robin
-date: 13-07-2025, time:8 PM, team1: Team 4, team2: Team 6, results: Team 6, stage: Quarter Finals
-date: 19-07-2025, time:8 PM, team1: Team 3, team2: Team 10, results: Team 3, stage: Quarter Finals
-date: 20-07-2025, time:8 PM, team1: Team 1, team2: Team 8, results: Team 8, stage: Quarter Finals
-date: 26-07-2025, time:8 PM, team1: Team 2, team2: Team 9, results: Team 2, stage: Quarter Finals
-date: 27-07-2025, time:8 PM, team1: Team 6, team2: Team 8, results: Team 8, stage: Semi Finals
-date: 02-08-2025, time:8 PM, team1: Team 2, team2: Team 3, results: Team 2, stage: Semi Finals 
-date: 03-08-2025, time:8 PM, team1: Team 2, team2: Team 8, results: Team 8, stage: Finals
-
+date: 06-09-2025, time:7 PM, team1: Team 2, team2: Team 5, results: Team 2, stage: Round Robin
+date: 06-09-2025, time:9 PM, team1: Team 1, team2: Team 3, results: Team 1, stage: Round Robin
+date: 07-09-2025, time:7 PM, team1: Team 6, team2: Team 7, results: Team 6, stage: Round Robin
+date: 07-09-2025, time:9 PM, team1: Team 4, team2: Team 8, results: Team 8, stage: Round Robin
+date: 13-09-2025, time:7 PM, team1: Team 3, team2: Team 5, results: Team 5, stage: Round Robin
+date: 13-09-2025, time:9 PM, team1: Team 1, team2: Team 6, results: Team 1, stage: Round Robin
+date: 14-09-2025, time:7 PM, team1: Team 2, team2: Team 8, results: Team 8, stage: Round Robin
+date: 14-09-2025, time:9 PM, team1: Team 4, team2: Team 7, results: Team 4, stage: Round Robin
+date: 20-09-2025, time:7 PM, team1: Team 6, team2: Team 8, results: Team 8, stage: Semi Finals
+date: 21-09-2025, time:7 PM, team1: Team 1, team2: Team 4, results: Team 1, stage: Semi Finals 
+date: 28-09-2025, time:7 PM, team1: Team 1, team2: Team 8, results: Team , stage: Finals
