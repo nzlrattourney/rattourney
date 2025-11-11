@@ -2,13 +2,11 @@ date: 01-11-2025, time:7 PM, team1: Team 4 - Avicii, team2: Team 5 - Scarra, res
 date: 01-11-2025, time:9 PM, team1: Team 2 - Gryff, team2: Team 8 - Pethy, results: Team 8, stage: Round Robin
 date: 02-11-2025, time:7 PM, team1: Team 1 - GBG, team2: Team 7 - Athena, results: Team 1, stage: Round Robin
 date: 02-11-2025, time:9 PM, team1: Team 3 - Lucian, team2: Team 6 - Birdy, results: Team 3, stage: Round Robin
-date: 08-11-2025, time:7 PM, team1: Team 2 - Gryff, team2: Team 3 - Lucian, results: Team X, stage: Round Robin
-date: 08-11-2025, time:9 PM, team1: Team 6 - Birdy, team2: Team 7 - Athena, results: Team X, stage: Round Robin
-date: 09-11-2025, time:7 PM, team1: Team 5 - Scarra, team2: Team 8 - Lucian, results: Team X, stage: Round Robin
-date: 09-11-2025, time:9 PM, team1: Team 1 - GBG, team2: Team 4 - Avicii, results: Team X, stage: Round Robin
-date: 15-11-2025, time:7 PM, team1: Team X, team2: Team X, results: Team X, stage: Semi Finals
-date: 16-11-2025, time:7 PM, team1: Team X, team2: Team X, results: Team X, stage: Semi Finals 
+date: 07-11-2025, time:8 PM, team1: Team 5 - Scarra, team2: Team 8 - Pethy, results: Team 8, stage: Round Robin
+date: 07-11-2025, time:10 PM, team1: Team 1 - GBG, team2: Team 4 - Avicii, results: Team 4, stage: Round Robin
+date: 08-11-2025, time:7 PM, team1: Team 2 - Gryff, team2: Team 3 - Lucian, results: Team 3, stage: Round Robin
+date: 08-11-2025, time:9 PM, team1: Team 6 - Birdy, team2: Team 7 - Athena, results: Team 6, stage: Round Robin
+date: 14-11-2025, time:9 PM, team1: Team 1 - GBG, team2: Team 6 - Birdy, results: Team X, stage: Death Match
+date: 15-11-2025, time:7 PM, team1: Team 4 - Avicii, team2: Team 8 - Pethy, results: Team X, stage: Semi Finals
+date: 16-11-2025, time:7 PM, team1: Team X, team2: Team X, results: Team 3 - Lucian, stage: Semi Finals 
 date: 22-11-2025, time:7 PM, team1: Team X, team2: Team X, results: Team X, stage: Finals
-
-
-
