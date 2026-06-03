@@ -2,16 +2,12 @@
 // CONFIG — fill these in before deploying
 // ============================================================
 const CONFIG = {
-  // GitHub fine-grained token with Contents read/write on this repo
   githubToken: "YOUR_GITHUB_TOKEN",
 
-  // e.g. "NzlMonster/rattourney"
   githubRepo: "YOUR_GITHUB_USERNAME/YOUR_REPO_NAME",
 
-  // Path inside the repo where registrations are saved
   githubFile: "registrations.csv",
 
-  // Your Vercel deployment URL, e.g. "https://rattourney.vercel.app"
   netlifyUrl: "https://rat-tourney.netlify.app/",
 };
 // ============================================================
@@ -43,14 +39,12 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     return;
   }
 
-  // Validate Discord format (new @username or legacy name#1234)
   const validDiscord = /^.{2,32}#\d{4}$/.test(discord) || /^@[a-z0-9_]{2,32}$/.test(discord);
   if (!validDiscord) {
     setStatus("error", "Invalid Discord name format. Use @username or name#1234");
     return;
   }
 
-  // IGN must include a tag
   if (!ign.includes("#")) {
     setStatus("error", "Please include your tag, e.g. PlayerName#OCE1");
     return;
@@ -63,7 +57,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   try {
     let rank = "Unranked";
 
-    // ── Step 1: Validate summoner via Vercel proxy ─────────────
     const [name, tag] = ign.split("#");
     setStatus("info", "Looking up summoner...");
 
@@ -81,14 +74,13 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     const data = await proxyRes.json();
     rank = data.rank;
 
-    // ── Step 2: Duplicate check + write to GitHub ──────────────
     setStatus("info", "Saving registration...");
 
     const { existingContent, sha } = await githubReadFile();
 
     const alreadyRegistered = existingContent
       .split("\n")
-      .slice(1) // skip CSV header row
+      .slice(1) 
       .some((line) => {
         const [savedIgn] = line.split(",");
         return savedIgn && savedIgn.toLowerCase() === ign.toLowerCase();
@@ -113,7 +105,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   }
 });
 
-// ── GitHub helpers ────────────────────────────────────────────
 
 async function githubReadFile() {
   const res = await fetch(
@@ -166,7 +157,6 @@ async function githubWriteFile(content, sha) {
   }
 }
 
-// ── Status message helpers ────────────────────────────────────
 
 function setStatus(type, message) {
   clearStatus();
