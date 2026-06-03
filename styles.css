@@ -431,3 +431,92 @@ body {
   cursor: pointer;
   transform: scale(1.15);
 }
+
+
+#signupModal.signup-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 20, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 3000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Only affect the signup form modal */
+#signupModal .modal-content {
+  width: 90%;
+  max-width: 420px;
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  border: 2px solid #9146FF;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(145, 70, 255, 0.3);
+  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Form header */
+#signupModal h2 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  color: #c9a3ff;
+  text-shadow: 0 0 8px rgba(145, 70, 255, 0.6);
+}
+
+/* Input and label */
+#signupModal label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  font-size: 0.9rem;
+  color: #cfcfcf;
+}
+
+#signupModal input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(145, 70, 255, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Orbitron", sans-serif;
+  transition: all 0.2s ease-in-out;
+}
+
+#signupModal input:focus {
+  border-color: #9146FF;
+  box-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
+  outline: none;
+}
+
+/* Submit button */
+#signupModal button {
+  background: linear-gradient(90deg, #9146FF, #7327D1);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 10px rgba(145, 70, 255, 0.5);
+}
+
+#signupModal button:hover {
+  background: linear-gradient(90deg, #7327D1, #b48cff);
+  box-shadow: 0 0 20px rgba(145, 70, 255, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
