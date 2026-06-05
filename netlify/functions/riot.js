@@ -9,30 +9,23 @@ exports.handler = async function (event) {
     };
   }
 
+  const RIOT_API_KEY = process.env.RIOT_API_KEY;
+  if (!RIOT_API_KEY) {
+    return {
+      statusCode: 500,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({ error: "Riot API key not configured" }),
+    };
+  }
+
   try {
-    const url = `https://www.leagueofgraphs.com/summoner/oce/${encodeURIComponent(name)}-${encodeURIComponent(tag)}`;
+    // Step 1: Get PUUID from name + tag
+    const accountRes = await fetch(
+      `https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(name)}/${encodeURIComponent(tag)}`,
+      { headers: { "X-Riot-Token": RIOT_API_KEY } }
+    );
 
-    const response = await fetch(url, {
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
-      },
-    });
-
-    if (!response.ok) {
-      return {
-        statusCode: response.status,
-        headers: { "Access-Control-Allow-Origin": "*" },
-        body: JSON.stringify({ error: "Failed to fetch summoner page" }),
-      };
-    }
-
-    const html = await response.text();
-
-    // Check summoner exists
-    const notFound = html.includes("Summoner not found") || !html.includes("bg-black");
-    if (notFound) {
+    if (accountRes.status === 404) {
       return {
         statusCode: 404,
         headers: { "Access-Control-Allow-Origin": "*" },
@@ -40,19 +33,38 @@ exports.handler = async function (event) {
       };
     }
 
-    // Parse rank
-    const tierMatch = html.match(/class="leagueTier[^"]*"[^>]*>\s*([^<]+)\s*</);
-    const divisionMatch = html.match(/class="rank[^"]*"[^>]*>\s*([^<]+)\s*</);
+    if (!accountRes.ok) {
+      return {
+        statusCode: accountRes.status,
+        headers: { "Access-Control-Allow-Origin": "*" },
+        body: JSON.stringify({ error: `Riot API error (${accountRes.status})` }),
+      };
+    }
 
-    const tier = tierMatch ? tierMatch[1].trim() : null;
-    const division = divisionMatch ? divisionMatch[1].trim() : null;
-    const rank = tier ? `${tier}${division ? " " + division : ""}`.trim() : "Unranked";
+    const { puuid } = await accountRes.json();
+
+    // Step 2: Get rank directly from PUUID
+    const rankRes = await fetch(
+      `https://oc1.api.riotgames.com/lol/league/v4/entries/by-puuid/${puuid}`,
+      { headers: { "X-Riot-Token": RIOT_API_KEY } }
+    );
+
+    let rank = "Unranked";
+    if (rankRes.ok) {
+      const entries = await rankRes.json();
+      console.log("Rank entries:", JSON.stringify(entries));
+      const solo = entries.find(e => e.queueType === "RANKED_SOLO_5x5");
+      rank = solo ? `${solo.tier} ${solo.rank}` : "Unranked";
+    } else {
+      console.log("Rank fetch failed:", rankRes.status);
+    }
 
     return {
       statusCode: 200,
       headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({ rank, summoner: `${name}#${tag}` }),
     };
+
   } catch (err) {
     return {
       statusCode: 500,

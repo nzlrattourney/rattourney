@@ -1,14 +1,9 @@
 // ============================================================
-// CONFIG — fill these in before deploying
+// CONFIG — no secrets here, all stored in Netlify env vars
 // ============================================================
 const CONFIG = {
-  githubToken: "YOUR_GITHUB_TOKEN",
-
-  githubRepo: "YOUR_GITHUB_USERNAME/YOUR_REPO_NAME",
-
-  githubFile: "registrations.csv",
-
-  netlifyUrl: "https://rat-tourney.netlify.app/",
+  // netlifyUrl: "http://localhost:8888",
+  netlifyUrl: "https://rat-tourney.netlify.app",
 };
 // ============================================================
 
@@ -25,6 +20,30 @@ function closeSignupModal() {
   clearStatus();
 }
 
+
+const RATE_LIMIT = {
+  maxAttempts: 5,        
+  windowMs: 60 * 1000,  
+};
+
+function checkRateLimit() {
+  const now = Date.now();
+  const stored = JSON.parse(localStorage.getItem("signup_attempts") || "[]");
+
+  // Filter out attempts outside the window
+  const recent = stored.filter(t => now - t < RATE_LIMIT.windowMs);
+
+  if (recent.length >= RATE_LIMIT.maxAttempts) {
+    const oldest = recent[0];
+    const secondsLeft = Math.ceil((RATE_LIMIT.windowMs - (now - oldest)) / 1000);
+    return { blocked: true, secondsLeft };
+  }
+
+  recent.push(now);
+  localStorage.setItem("signup_attempts", JSON.stringify(recent));
+  return { blocked: false };
+}
+
 // ── Form submission ───────────────────────────────────────────
 
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
@@ -33,6 +52,13 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const form = e.target;
   const ign = form.ign.value.trim();
   const discord = form.discord.value.trim();
+
+  // Rate limit check
+  const { blocked, secondsLeft } = checkRateLimit();
+  if (blocked) {
+    setStatus("error", `Too many attempts. Please wait ${secondsLeft} seconds before trying again.`);
+    return;
+  }
 
   if (!ign || !discord) {
     setStatus("error", "Please fill in both fields.");
@@ -56,45 +82,47 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
   try {
     let rank = "Unranked";
-
     const [name, tag] = ign.split("#");
+
+    //Validate summoner + get rank via Netlify ──────
     setStatus("info", "Looking up summoner...");
 
-    const proxyRes = await fetch(
+    const riotRes = await fetch(
       `${CONFIG.netlifyUrl}/.netlify/functions/riot?name=${encodeURIComponent(name)}&tag=${encodeURIComponent(tag)}`
     );
 
-    if (proxyRes.status === 404) {
+    if (riotRes.status === 404) {
       throw new Error(`Summoner "${ign}" not found on OCE. Check your name and tag.`);
     }
-    if (!proxyRes.ok) {
+    if (!riotRes.ok) {
       throw new Error("Could not validate summoner. Try again later.");
     }
 
-    const data = await proxyRes.json();
-    rank = data.rank;
+    const riotData = await riotRes.json();
+    rank = riotData.rank;
 
+    // Save registration via Netlify ─────────────────
     setStatus("info", "Saving registration...");
 
-    const { existingContent, sha } = await githubReadFile();
+    const registerRes = await fetch(
+      `${CONFIG.netlifyUrl}/.netlify/functions/register`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ign, discord, rank }),
+      }
+    );
 
-    const alreadyRegistered = existingContent
-      .split("\n")
-      .slice(1) 
-      .some((line) => {
-        const [savedIgn] = line.split(",");
-        return savedIgn && savedIgn.toLowerCase() === ign.toLowerCase();
-      });
+    const registerData = await registerRes.json();
 
-    if (alreadyRegistered) {
-      throw new Error(`"${ign}" is already registered!`);
+    if (registerRes.status === 409) {
+      throw new Error(registerData.error);
+    }
+    if (!registerRes.ok) {
+      throw new Error(registerData.error || "Failed to save registration.");
     }
 
-    const header = existingContent === "" ? "IGN,Discord,Rank\n" : "";
-    const newLine = `${ign},${discord},${rank}\n`;
-    await githubWriteFile(header + existingContent + newLine, sha);
-
-    // ── Success ────────────────────────────────────────────────
+    // ── Success ───────────────────────────────────────────────
     setStatus("success", `✔ Registered! IGN: ${ign} | Rank: ${rank}`);
     form.reset();
   } catch (err) {
@@ -104,58 +132,6 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     submitBtn.textContent = "Submit";
   }
 });
-
-
-async function githubReadFile() {
-  const res = await fetch(
-    `https://api.github.com/repos/${CONFIG.githubRepo}/contents/${CONFIG.githubFile}`,
-    {
-      headers: {
-        Authorization: `Bearer ${CONFIG.githubToken}`,
-        Accept: "application/vnd.github+json",
-      },
-    }
-  );
-
-  if (res.status === 404) {
-    return { existingContent: "", sha: null };
-  }
-  if (!res.ok) {
-    throw new Error(`GitHub read error (${res.status}). Check your token and repo name.`);
-  }
-
-  const data = await res.json();
-  const existingContent = decodeURIComponent(
-    escape(atob(data.content.replace(/\n/g, "")))
-  );
-  return { existingContent, sha: data.sha };
-}
-
-async function githubWriteFile(content, sha) {
-  const body = {
-    message: "Add tournament registration",
-    content: btoa(unescape(encodeURIComponent(content))),
-  };
-  if (sha) body.sha = sha;
-
-  const res = await fetch(
-    `https://api.github.com/repos/${CONFIG.githubRepo}/contents/${CONFIG.githubFile}`,
-    {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${CONFIG.githubToken}`,
-        Accept: "application/vnd.github+json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }
-  );
-
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `GitHub write error (${res.status}).`);
-  }
-}
 
 
 function setStatus(type, message) {
@@ -175,7 +151,7 @@ function setStatus(type, message) {
         : type === "success"
         ? "background:#051a0a;border:1px solid #27ae6066;color:#2ecc71;"
         : "background:#0a0a1a;border:1px solid #9146ff44;color:#9b8fd4;"
-    }
+        }
   `;
   document.getElementById("signupForm").appendChild(box);
 }
