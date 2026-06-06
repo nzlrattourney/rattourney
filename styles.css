@@ -34,6 +34,9 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
+  background: rgba(10, 10, 20, 0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(155, 96, 245, 0.2);
 }
 
 .nav-bar .title h1 {
@@ -110,26 +113,26 @@ body {
       background-size: cover;
   width: 100vw;
   height: 100vh;
-  font-size: 1.35rem;
+  font-size: 1.8rem;
 }
 
 
 .watch-now p {
-  font-size: 2rem;
-  margin-top: 1rem;
-  color: #A1D2CE;
+  font-size: 2.5rem;
+  margin-top: 1.5rem;
+  color: #5ce7ff;
 }
 
 .watch-now button {
   margin-top: 2rem;
   padding: 0.8rem 2rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: none;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #5D9CEC, #8E44AD);
-  color: #fff;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #5675fd, #e668ff);
+  color: #ffffff;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 1s ease;
 }
 
 .watch-now button:hover {
@@ -307,24 +310,30 @@ body {
   animation: slideDown 0.4s;
 }
 
+#scheduleModal .modal-content {
+  max-height: 75vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 .match-schedule {
   display: flex;
   flex-direction: column;
-  gap: 20px; 
+  gap: 20px;
+  overflow-x: auto;
 }
-
 
 #schedule-table {
   order: 1;
   width: 100%;
-  margin-bottom: 0; /
+  min-width: 600px;
+  margin-bottom: 0;
 }
 
 #schedule-table thead {
   background: linear-gradient(90deg, #5a47d6, #3a2fa3);
   color: #ADE8F4;
   font-weight: bold;
-
 }
 
 #schedule-table th, 
@@ -520,3 +529,31 @@ body {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
+/* 
+#rat-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.rat {
+  position: absolute;
+  bottom: 0;
+  font-size: 1.8rem;
+  white-space: nowrap;
+}
+
+@keyframes run-right {
+  from { left: -60px; }
+  to { left: 110%; }
+}
+
+@keyframes run-left {
+  from { left: 110%; }
+  to { left: -60px; }
+} */

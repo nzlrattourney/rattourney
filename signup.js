@@ -1,11 +1,7 @@
-// ============================================================
-// CONFIG — no secrets here, all stored in Netlify env vars
-// ============================================================
 const CONFIG = {
   // netlifyUrl: "http://localhost:8888",
   netlifyUrl: "https://rat-tourney.netlify.app",
 };
-// ============================================================
 
 const signupModal = document.getElementById("signupModal");
 const signupOpenBtn = document.getElementById("register");
@@ -44,11 +40,28 @@ function checkRateLimit() {
   return { blocked: false };
 }
 
+function isAlreadyRegistered() {
+  const expiry = localStorage.getItem("registered_until");
+  if (!expiry) return false;
+  if (Date.now() < parseInt(expiry)) return true;
+  localStorage.removeItem("registered_until"); // expired, clean up
+  return false;
+}
+
+function setRegisteredLock() {
+  const sevenDays = Date.now() + 7 * 24 * 60 * 60 * 1000;
+  localStorage.setItem("registered_until", sevenDays.toString());
+}
+
 // ── Form submission ───────────────────────────────────────────
 
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+      if (isAlreadyRegistered()) {
+    setStatus("error", "You have already registered for this tournament.");
+    return;
+  }
   const form = e.target;
   const ign = form.ign.value.trim();
   const discord = form.discord.value.trim();
@@ -65,7 +78,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
     return;
   }
 
-  const validDiscord = /^.{2,32}#\d{4}$/.test(discord) || /^@[a-z0-9_]{2,32}$/.test(discord);
+const validDiscord = /^.{2,32}#\d{4}$/.test(discord) || /^@?[a-z0-9_.]{2,32}$/i.test(discord);;
   if (!validDiscord) {
     setStatus("error", "Invalid Discord name format. Use @username or name#1234");
     return;
@@ -124,6 +137,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
     // ── Success ───────────────────────────────────────────────
     setStatus("success", `✔ Registered! IGN: ${ign} | Rank: ${rank}`);
+    setRegisteredLock(); 
     form.reset();
   } catch (err) {
     setStatus("error", err.message);
@@ -141,17 +155,19 @@ function setStatus(type, message) {
   box.textContent = message;
   box.style.cssText = `
     margin: 12px 0 0;
-    padding: 10px 14px;
-    border-radius: 4px;
-    font-size: 13px;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
     font-family: 'Orbitron', sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
     ${
       type === "error"
-        ? "background:#1a0510;border:1px solid #9b30ff66;color:#cc44ff;"
+        ? "background:rgba(255,50,50,0.1);border:1px solid rgba(255,50,50,0.5);color:#ff6b6b;box-shadow:0 0 10px rgba(255,50,50,0.2);"
         : type === "success"
-        ? "background:#051a0a;border:1px solid #27ae6066;color:#2ecc71;"
-        : "background:#0a0a1a;border:1px solid #9146ff44;color:#9b8fd4;"
-        }
+        ? "background:rgba(86,221,221,0.1);border:1px solid rgba(86,221,221,0.5);color:#56dddd;box-shadow:0 0 10px rgba(86,221,221,0.2);"
+        : "background:rgba(145,70,255,0.1);border:1px solid rgba(145,70,255,0.4);color:#c9a3ff;box-shadow:0 0 10px rgba(145,70,255,0.2);"
+    }
   `;
   document.getElementById("signupForm").appendChild(box);
 }

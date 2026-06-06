@@ -209,3 +209,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+// const ANIMALS = ["🐀", "🐁", "🐇", "🦊", "🐿️", "🦝", "🐈",  "🦔"];
+
+// function spawnAnimal() {
+//  const container = document.getElementById("rat-container");
+//   const el = document.createElement("div");
+//   el.classList.add("rat");
+
+//   const goingRight = Math.random() > 0.5;
+//   const animal = ANIMALS[Math.floor(Math.random() * ANIMALS.length)];
+//   const duration = Math.random() * 6 + 4;
+//   const bottom = Math.random() * 20;
+//   const fontSize = Math.random() * 1 + 1.2;
+
+//   el.textContent = animal;
+//   el.style.animationDuration = `${duration}s`;
+//   el.style.bottom = `${bottom}px`;
+//   el.style.fontSize = `${fontSize}rem`;
+
+//   if (goingRight) {
+//     el.style.animation = `run-right ${duration}s linear`;
+//     el.style.transform = "scaleX(1)";
+//   } else {
+//     el.style.animation = `run-left ${duration}s linear`;
+//     el.style.transform = "scaleX(-1)";
+//   }
+
+//   container.appendChild(el);
+//   setTimeout(() => el.remove(), duration * 1000);
+// }
+
+// setInterval(() => spawnAnimal(), Math.random() * 3000 + 2000);
+// setTimeout(() => spawnAnimal(), 500);
+// setTimeout(() => spawnAnimal(), 1500);
