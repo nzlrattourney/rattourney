@@ -70,9 +70,19 @@ exports.handler = async function (event) {
         body: JSON.stringify({ error: `"${ign}" is already registered!` }),
       };
     }
+    const timestamp = new Date().toLocaleString("en-NZ", { 
+      timeZone: "Pacific/Auckland",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    }); 
 
-    const header = existingContent === "" ? "IGN,Discord,Rank\n" : "";
-    const newLine = `${ign},${discord},${rank}\n`;
+    const header = existingContent === "" ? "IGN,Discord,Rank,Registration Date\n" : "";
+    const newLine = `${ign},${discord},${rank},${timestamp}\n`;
     const newContent = header + existingContent + newLine;
 
     const writeBody = {
