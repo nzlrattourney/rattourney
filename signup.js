@@ -136,7 +136,7 @@ const validDiscord = /^.{2,32}#\d{4}$/.test(discord) || /^@?[a-z0-9_.]{2,32}$/i.
     }
 
     // ── Success ───────────────────────────────────────────────
-    setStatus("success", `✔ Registered! IGN: ${ign} | Rank: ${rank}`);
+    setStatus("success", `Registered! IGN: ${ign} | Rank: ${rank}`);
     setRegisteredLock(); 
     form.reset();
   } catch (err) {
